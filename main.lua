@@ -22,19 +22,14 @@ require('cunn')
 paths.dofile('Trainer.lua')
 paths.dofile('Mixer.lua')
 paths.dofile('ReinforceCriterion.lua')
---require('fbcode.experimental.deeplearning.spchopra.rnn-lib-cond.datasets')
 paths.dofile('DataSource.lua')
 local mdls = paths.dofile('model_factory.lua')
 paths.dofile('reward_factory.lua')
 
 torch.manualSeed(1111)
 cutorch.manualSeed(1111)
--- There are default options in options.lua
--- however, the user can specify an input configuration
--- file or pass arguments from command line.
--- These overwrite each other as in:
--- default <- config <- command line
 local cmd = torch.CmdLine()
+cmd:option('-datadir', 'data', 'path to binarized training data')
 cmd:option('-lr', 0.2, 'learning rate')
 cmd:option('-gparamclip', 10, 'clipping threshold of parameter gradients')
 cmd:option('-bsz', 32, 'batch size')
@@ -65,8 +60,14 @@ config.model = {
     reward = config.reward}
 
 -- load data
-local path2data = '/mnt/vol/gfsai-local/ai-group/users/michaelauli/rnn/' ..
-    'summary_iwslt14_de2en_large_valid/data'
+local path2data = config.datadir
+-- download the data if its not already in the data directory.
+if not (paths.dirp(path2data) and
+            paths.filep(paths.concat(path2data, 'dict.target.th7')) and
+            paths.filep(paths.concat(path2data, 'dict.source.th7'))) then
+    print('[[ Data not found: fetching a fresh copy and running tokenizer]]')
+    os.execute('./prepareData.sh')
+end
 -- load target and source dictionaries and add padding token
 local dict_target = torch.load(paths.concat(path2data, 'dict.target.th7'))
 local dict_source = torch.load(paths.concat(path2data, 'dict.source.th7'))
@@ -157,5 +158,6 @@ for nrstepsinit = start_nrstepsinit, 1, -config.deltasteps do
    trainer:eval_generation(valid_data)
 end
 print('End of training.')
+print('****************')
 print('Evaluating now generation on the test set')
 trainer:eval_generation(test_data)

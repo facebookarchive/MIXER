@@ -496,7 +496,6 @@ function RewardFactory:get_corpus_score()
             score[nn] = (self.score[nn][2] == 0) and 1e-16 or
                 self.score[nn][1] / self.score[nn][2]
         end
-        print('\nCorpus level precisions', score)
         local bleu = score:log():sum(1):div(self.order):exp():squeeze()
         local bp = 1
         if self.length_input < self.length_target and self.length_input > 0 then

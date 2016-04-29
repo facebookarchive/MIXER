@@ -7,6 +7,9 @@ The code allows you to reproduce our result on the machine translation task.
 
 The code implements MIXER; it runs both training and evaluation.
 
+## Preparing the training data
+run prepareData.sh
+
 ## Examples
 Here are some examples of how to use the code.
 
@@ -48,11 +51,6 @@ The top level file is called main.lua. In order to run the code
 you need to run the file using torch. For example:
 ```
 cuth -i main.lua -<option1_name> option1_val -<option2_name> option2_val ...
-```
-
-In order to check what all options are available, type
-```
-cuth -i main.lua --help
 ```
 
 ## Structure of the code.
