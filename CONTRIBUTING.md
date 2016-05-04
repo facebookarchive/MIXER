@@ -1,4 +1,4 @@
-# Contributing to SEQUENCE LEVEL TRAINING WITH RECURRENT NEURAL NETWORKS
+# Contributing to MIXER
 We want to make contributing to this project as easy and transparent as
 possible.
 

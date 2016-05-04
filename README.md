@@ -1,4 +1,4 @@
-# Sequence Level Training with Recurrent Neural Networks
+# MIXER - Sequence Level Training with Recurrent Neural Networks
 http://arxiv.org/abs/1511.06732
 
 This is a self contained software accompanying the paper titled: Sequence Level
@@ -67,7 +67,7 @@ cuth -i main.lua -<option1_name> option1_val -<option2_name> option2_val ...
 * util.lua  auxiliary functions.
 
 ## License
-"Sequence Level Training with Recurrent Neural Networks"'s software is BSD-licensed.
+"MIXER"'s software is BSD-licensed.
 We also provide an additional patent grant.
 
 
