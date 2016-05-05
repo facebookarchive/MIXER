@@ -60,6 +60,5 @@ supported [extensions](http://luajit.org/extensions.html);
 [FFI](http://luajit.org/ext_ffi.html) is okay.
 
 ## License
-By contributing to SEQUENCE LEVEL TRAINING WITH
-RECURRENT NEURAL NETWORKS, you agree that your
-contributions will be licensed under its Apache 2.
+By contributing to MIXER, you agree that your
+contributions will be licensed under BSD.
