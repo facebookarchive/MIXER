@@ -15,7 +15,7 @@ Here are some examples of how to use the code.
 
 * To run an LSTM with the default parameter setting used to generate MIXER's entry for machine translation (see table in fig.5 of http://arxiv.org/abs/1511.06732), type
 ```
-cuth -i main.lua
+th -i main.lua
 ```
 
 * To run an LSTM with following
@@ -26,12 +26,12 @@ hyper-parameters:
 ** number of time steps we unfold: 15
 type
 ```
-cuth -i main.lua -nhid 128 -bsz 64 -lr 0.1 -bptt 15
+th -i main.lua -nhid 128 -bsz 64 -lr 0.1 -bptt 15
 ```
 
 To list all the options available, you need to type
 ```
-cuth main.lua --help
+th main.lua --help
 ```
 
 ## Requirements
@@ -50,7 +50,7 @@ Download the files in an appropriate directory and run the code from there. See 
 The top level file is called main.lua. In order to run the code
 you need to run the file using torch. For example:
 ```
-cuth -i main.lua -<option1_name> option1_val -<option2_name> option2_val ...
+th -i main.lua -<option1_name> option1_val -<option2_name> option2_val ...
 ```
 
 ## Structure of the code.
