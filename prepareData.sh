@@ -92,4 +92,4 @@ for l in $src $tgt; do
 done
 
 echo "binarizing train, valid, test..."
-torch makedata.lua -dstDir data -srcDir prep
+th makedata.lua -dstDir data -srcDir prep
