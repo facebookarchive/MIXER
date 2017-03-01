@@ -30,7 +30,17 @@ function ReinforceSampler:updateOutput(input)
         self.prob:copy(input)
         self.prob:exp()
         self.output:resize(input:size(1), 1)
-        torch.multinomial(self.output, self.prob, 1)
+        if torch.typename(self.output):find('torch%.Cuda.*Tensor') then
+            self.output = self.output:cudaLong()
+        else
+            self.output = self.output:long()
+        end
+        self.prob.multinomial(self.output, self.prob, 1)
+        if torch.typename(self.output):find('torch%.Cuda.*Tensor') then
+            self.output = self.output:cuda()
+        else
+            self.output = self.output:float()
+        end
     else
         error('we did not implement sampling from', self.distribution)
     end
